@@ -1,1 +1,0 @@
-Upload to GitHub. Enable GitHub Pages or deploy on Vercel.
