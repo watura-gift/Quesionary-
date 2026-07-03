@@ -1,0 +1,7 @@
+emailjs.init({publicKey:'Vms70f7-nOevWD4uE'});
+const qs=[['Main Goal',['Sell Paintings','Show Portfolio','Get Commissions','All of the Above']],['Look & Feel',['Luxury','Modern','Minimal','Elegant']],['Colours',['Black & Gold','White & Black','Earth Tones','Surprise Me']],['Pages',['Home','Gallery','Shop','About','Contact','Blog']],['Features',['Shopping Cart','Wishlist','Instagram Feed','Live Chat']],['Selling Area',['Sri Lanka','Worldwide','Both']],['Payments',['Visa','PayPal','Bank Transfer','Decide Later']],['Animations',['Smooth Scrolling','Fade In','Floating Images','Parallax']]];
+let i=0,a={};const f=document.getElementById('form');
+function draw(){bar.style.width=((i)/qs.length*100)+'%';submit.style.display=i===qs.length?'block':'none';document.querySelector('.nav').style.display=i===qs.length?'none':'flex';if(i===qs.length){f.innerHTML='<h2>Ready to send?</h2>';return;}let[q,o]=qs[i];f.innerHTML='<h2>'+q+'</h2>'+o.map(x=>'<div class="card '+(a[q]===x?'sel':'')+'" data-v="'+x+'">'+x+'</div>').join('');document.querySelectorAll('.card').forEach(c=>c.onclick=()=>{a[q]=c.dataset.v;draw();});}
+next.onclick=()=>{if(i<qs.length)i++;draw()};prev.onclick=()=>{if(i>0)i--;draw()};
+submit.onclick=(e)=>{e.preventDefault();emailjs.send('service_6gcxl6q','template_zku2w46',{answers:JSON.stringify(a,null,2)}).then(()=>status.textContent='Sent successfully!',err=>status.textContent='Error: '+err.text);}
+draw();
